@@ -9,17 +9,29 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Dimensions,
+  TouchableHighlight,
 } from 'react-native';
+import Camera from 'react-native-camera';
 
 export default class smartEats extends Component {
+  clickedme(){
+    alert("was touched");
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Smart Eats 
-        </Text>
-        
+        <Camera
+          ref={(cam) => {
+            this.camera = cam;
+          }}
+          style={styles.preview}
+          aspect={Camera.constants.Aspect.fill}>
+            <TouchableHighlight onPress={this.clickedme.bind(this)}>
+              <View style={{height:50, width:50, backgroundColor:"#581845"}}></View>
+            </TouchableHighlight>
+          </Camera>
       </View>
     );
   }
@@ -33,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#418EF7',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 40,
     textAlign: 'center',
     margin: 10,
   },
@@ -41,6 +53,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
   },
 });
 
