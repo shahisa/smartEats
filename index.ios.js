@@ -17,7 +17,7 @@ import Camera from 'react-native-camera';
 
 export default class smartEats extends Component {
   clickedme(){
-    alert("was touched");
+    alert("I was touched");
   }
   render() {
     return (
